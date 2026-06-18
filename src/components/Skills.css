@@ -1,0 +1,132 @@
+.skills__header {
+  margin-bottom: 60px;
+}
+
+.skills__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* Core skills card */
+.skills__card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.skills__card-title {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  position: relative;
+  z-index: 1;
+}
+
+.skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skill-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.skill-emoji {
+  display: inline-block;
+  font-size: 1.1rem;
+}
+
+.skill-pct {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-family: 'Fira Code', monospace;
+  font-weight: 500;
+}
+
+.skill-track {
+  height: 7px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.skill-fill {
+  height: 100%;
+  border-radius: 99px;
+}
+
+/* Category cards list */
+.skills__categories-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skills__category-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 22px 26px;
+}
+
+.skills__category-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.skills__category-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(34,211,238,0.12);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-cyan);
+  flex-shrink: 0;
+  border: 1px solid rgba(34,211,238,0.22);
+}
+
+.skills__category-title {
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.skills__category-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .skills__grid {
+    grid-template-columns: 1fr;
+  }
+}

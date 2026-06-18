@@ -1,0 +1,199 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: all 0.4s ease;
+  padding: 16px 0;
+}
+
+.navbar--scrolled {
+  background: var(--navbar-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 0;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.12);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Logo */
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  margin-right: auto;
+}
+
+.navbar__logo-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--grad-main);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(139,92,246,0.45);
+  transition: box-shadow 0.3s;
+  flex-shrink: 0;
+}
+.navbar__logo:hover .navbar__logo-icon {
+  box-shadow: 0 6px 24px rgba(139,92,246,0.7);
+}
+
+.navbar__logo-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  transition: color 0.3s;
+  white-space: nowrap;
+}
+.navbar__logo-text span { color: var(--accent-purple); }
+
+/* Desktop links */
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.navbar__link {
+  position: relative;
+  padding: 6px 13px;
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  transition: color 0.3s;
+  white-space: nowrap;
+}
+.navbar__link:hover     { color: var(--text-primary); }
+.navbar__link--active   { color: var(--text-primary); font-weight: 600; }
+
+.navbar__link-underline {
+  position: absolute;
+  bottom: -2px;
+  left: 13px;
+  right: 13px;
+  height: 2px;
+  background: var(--grad-main);
+  border-radius: 2px;
+}
+
+/* Theme toggle */
+.navbar__theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  padding: 7px 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  flex-shrink: 0;
+}
+.navbar__theme-toggle:hover {
+  border-color: var(--accent-purple);
+  color: var(--accent-purple);
+  background: rgba(167,139,250,0.08);
+}
+.navbar__theme-toggle span {
+  display: flex;
+  align-items: center;
+}
+
+/* CTA */
+.navbar__cta {
+  font-size: 0.85rem;
+  padding: 8px 18px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Hamburger */
+.navbar__hamburger {
+  display: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  padding: 7px;
+  cursor: pointer;
+  transition: all 0.3s;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+}
+.navbar__hamburger:hover {
+  border-color: var(--accent-purple);
+  color: var(--accent-purple);
+}
+
+/* Mobile menu */
+.navbar__mobile {
+  overflow: hidden;
+  background: var(--navbar-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid var(--border);
+}
+
+.navbar__mobile-link {
+  display: block;
+  padding: 15px 24px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  border-bottom: 1px solid var(--border);
+  transition: all 0.2s;
+}
+.navbar__mobile-link:hover,
+.navbar__mobile-link--active {
+  color: var(--accent-purple);
+  background: rgba(167,139,250,0.08);
+  padding-left: 30px;
+}
+
+.navbar__mobile-bottom {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+}
+.navbar__mobile-bottom .navbar__theme-toggle {
+  flex: 1;
+  justify-content: center;
+}
+.navbar__mobile-bottom .btn {
+  flex: 1;
+  justify-content: center;
+}
+
+/* ── Breakpoints ── */
+@media (max-width: 768px) {
+  .navbar__links        { display: none; }
+  .navbar__cta          { display: none; }
+  .navbar__theme-toggle { display: none; }
+  .navbar__hamburger    { display: flex; }
+}
+
+@media (max-width: 400px) {
+  .navbar__logo-text { font-size: 0.95rem; }
+  .navbar__inner     { gap: 12px; }
+}
