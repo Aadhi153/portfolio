@@ -110,9 +110,10 @@ export default function Contact() {
         <div className="contact__grid">
           {/* Info Panel */}
           <motion.div
-            className="contact__info"
-            initial={{ opacity: 0, x: -40 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
+            className="contact__info perspective"
+            style={{ transformPerspective: 1200 }}
+            initial={{ opacity: 0, x: -40, rotateY: 16 }}
+            animate={inView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.15 }}
           >
             <div className="card contact__info-card">
@@ -152,8 +153,10 @@ export default function Contact() {
 
           {/* Form */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
+            className="perspective"
+            style={{ transformPerspective: 1200 }}
+            initial={{ opacity: 0, x: 40, rotateY: -16 }}
+            animate={inView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.25 }}
           >
             <form className="card contact__form" onSubmit={handleSubmit} ref={formRef}>

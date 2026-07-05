@@ -107,7 +107,7 @@
   justify-content: center;
   color: var(--accent-cyan);
   flex-shrink: 0;
-  border: 1px solid rgba(34,211,238,0.22);
+  border: 1px solid rgba(34,211,238,0.25);
 }
 
 .skills__category-title {

@@ -40,7 +40,7 @@ export default function Preloader({ onComplete }) {
             zIndex: 9999,
             overflow: 'hidden',
             pointerEvents: 'auto',
-            background: '#07091a'
+            background: '#05050f'
           }}
         >
           <LoaderContent pct={pct} style={{ width: '100vw', height: '100vh' }} />

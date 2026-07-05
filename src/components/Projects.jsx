@@ -1,6 +1,7 @@
 import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
 import { Layers, ExternalLink } from 'lucide-react'
+import useTilt from '../hooks/useTilt'
 import './Projects.css'
 
 const GithubIcon = ({ size = 18 }) => (
@@ -30,7 +31,7 @@ const projects = [
     image: '/ecommerce.png',
     tags: ['React', 'Node.js', 'MongoDB', 'Express'],
     tagColors: ['cyan', '', 'pink', ''],
-    accent: '#06b6d4',
+    accent: '#22d3ee',
     demo: '#',
     github: '#',
   },
@@ -50,6 +51,7 @@ const projects = [
 
 function ProjectCard({ project, index, onShowDashboard }) {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.15 })
+  const tilt = useTilt({ strength: 7, lift: 18, scale: 1.02 })
 
   const handleDemoClick = (e) => {
     if (project.id === 'dashboard-app') {
@@ -58,12 +60,20 @@ function ProjectCard({ project, index, onShowDashboard }) {
     }
   };
 
+  const setRefs = (node) => {
+    ref(node)
+    tilt.ref.current = node
+  }
+
   return (
     <motion.div
-      ref={ref}
-      className="project-card card"
-      initial={{ opacity: 0, y: 50 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
+      ref={setRefs}
+      className="project-card card tilt-card"
+      onMouseMove={tilt.onMouseMove}
+      onMouseLeave={tilt.onMouseLeave}
+      style={{ transformPerspective: 1200 }}
+      initial={{ opacity: 0, y: 50, rotateX: -18 }}
+      animate={inView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
       transition={{ delay: index * 0.15, duration: 0.6, ease: 'easeOut' }}
     >
       {/* Accent glow */}
@@ -137,7 +147,7 @@ export default function Projects({ onShowDashboard }) {
           </p>
         </motion.div>
 
-        <div className="projects__grid">
+        <div className="projects__grid perspective">
           {projects.map((p, i) => (
             <ProjectCard key={p.id} project={p} index={i} onShowDashboard={onShowDashboard} />
           ))}

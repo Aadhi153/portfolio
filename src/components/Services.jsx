@@ -46,13 +46,14 @@ export default function Services() {
           </p>
         </motion.div>
 
-        <div className="services__grid">
+        <div className="services__grid perspective">
           {services.map((service, idx) => (
             <motion.div
               key={service.title}
               className="card service-card"
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
+              style={{ transformPerspective: 1200 }}
+              initial={{ opacity: 0, y: 30, rotateX: -15, rotateY: idx % 2 === 0 ? 8 : -8 }}
+              animate={inView ? { opacity: 1, y: 0, rotateX: 0, rotateY: 0 } : {}}
               transition={{ duration: 0.6, delay: service.delay }}
             >
               <div className="service-card__icon-wrapper">

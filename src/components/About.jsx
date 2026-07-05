@@ -1,6 +1,7 @@
 import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
 import { User, Zap, Coffee, MapPin, Mail, GraduationCap, Calendar } from 'lucide-react'
+import useTilt from '../hooks/useTilt'
 import './About.css'
 
 const highlights = [
@@ -18,6 +19,7 @@ const details = [
 
 export default function About() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
+  const tilt = useTilt({ strength: 8, lift: 16, scale: 1.015 })
 
   return (
     <section id="about" className="about section" ref={ref}>
@@ -38,12 +40,18 @@ export default function About() {
         <div className="about__grid">
           {/* Left Column: Visual Profile Card */}
           <motion.div
-            className="about__profile-col"
-            initial={{ opacity: 0, x: -40 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
+            className="about__profile-col perspective"
+            style={{ transformPerspective: 1200 }}
+            initial={{ opacity: 0, x: -40, rotateY: 20 }}
+            animate={inView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.15 }}
           >
-            <div className="card about__card">
+            <div
+              className="card tilt-card about__card"
+              ref={tilt.ref}
+              onMouseMove={tilt.onMouseMove}
+              onMouseLeave={tilt.onMouseLeave}
+            >
               <div className="about__avatar">
                 <span>AP</span>
               </div>
@@ -66,9 +74,10 @@ export default function About() {
 
           {/* Right Column: Narrative Story & Details */}
           <motion.div
-            className="about__story-col"
-            initial={{ opacity: 0, x: 40 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
+            className="about__story-col perspective"
+            style={{ transformPerspective: 1200 }}
+            initial={{ opacity: 0, x: 40, rotateY: -20 }}
+            animate={inView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
             <div className="about__story-content">

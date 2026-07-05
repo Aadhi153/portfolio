@@ -1,5 +1,7 @@
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { Download, ArrowDown, Sparkles } from 'lucide-react'
+import Hero3D from './Hero3D'
 import './Hero.css'
 
 const GithubIcon = () => (
@@ -16,7 +18,58 @@ const LinkedinIcon = () => (
 
 const roles = ['Full Stack Developer', 'React Native Developer', 'Web Developer']
 
+function useTypewriter(words, { typeSpeed = 75, deleteSpeed = 40, pause = 1500 } = {}) {
+  const [index, setIndex] = useState(0)
+  const [text, setText] = useState('')
+  const [deleting, setDeleting] = useState(false)
+
+  useEffect(() => {
+    const current = words[index]
+    let delay = deleting ? deleteSpeed : typeSpeed
+
+    if (!deleting && text === current) {
+      delay = pause
+    }
+
+    const timeout = setTimeout(() => {
+      if (deleting) {
+        if (text === '') {
+          setDeleting(false)
+          setIndex((i) => (i + 1) % words.length)
+        } else {
+          setText(current.slice(0, text.length - 1))
+        }
+      } else {
+        if (text === current) {
+          setDeleting(true)
+        } else {
+          setText(current.slice(0, text.length + 1))
+        }
+      }
+    }, delay)
+
+    return () => clearTimeout(timeout)
+  }, [text, deleting, index, words, typeSpeed, deleteSpeed, pause])
+
+  return text
+}
+
 export default function Hero() {
+  const roleText = useTypewriter(roles)
+  const visualRef = useRef(null)
+  const [tilt, setTilt] = useState({ x: 0, y: 0 })
+
+  const handleMouseMove = useCallback((e) => {
+    const el = visualRef.current
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    const px = (e.clientX - rect.left) / rect.width
+    const py = (e.clientY - rect.top) / rect.height
+    setTilt({ x: (0.5 - py) * 18, y: (px - 0.5) * 18 })
+  }, [])
+
+  const handleMouseLeave = useCallback(() => setTilt({ x: 0, y: 0 }), [])
+
   return (
     <section id="home" className="hero section">
       <div className="container hero__grid">
@@ -40,7 +93,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             Hi, I'm{' '}
-            <span className="hero__name-gradient">Aadhi Piranav</span>
+            <span className="hero__name-gradient grad-text-animated">Aadhi Piranav</span>
           </motion.h1>
 
           <motion.div
@@ -49,7 +102,10 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <span className="hero__role">Full Stack Developer</span>
+            <span className="hero__role">
+              {roleText}
+              <span className="hero__role-cursor" />
+            </span>
             <span className="hero__role-sub">React Native · Web Developer · Tamil Nadu, India</span>
           </motion.div>
 
@@ -99,24 +155,25 @@ export default function Hero() {
 
         {/* Right — Avatar / Visual */}
         <motion.div
-          className="hero__visual"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
+          className="hero__visual perspective"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+          ref={visualRef}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
         >
-          <div className="hero__avatar-ring">
+          <div
+            className="hero__avatar-ring"
+            style={{ transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` }}
+          >
             <div className="hero__avatar-inner">
-              <div className="hero__avatar-code">
-                <span className="hero__code-line"><span className="kw">const</span> dev = {'{'}</span>
-                <span className="hero__code-line indent"><span className="key">name</span>: <span className="str">'Aadhi Piranav'</span>,</span>
-                <span className="hero__code-line indent"><span className="key">stack</span>: [<span className="str">'React Native'</span>, <span className="str">'React'</span>, <span className="str">'Node'</span>],</span>
-                <span className="hero__code-line indent"><span className="key">passion</span>: <span className="str">'Real-world solutions'</span>,</span>
-                <span className="hero__code-line indent"><span className="key">location</span>: <span className="str">'Tamil Nadu, India'</span></span>
-                <span className="hero__code-line">{'}'};</span>
+              <div className="hero__canvas-wrap">
+                <Hero3D />
               </div>
             </div>
 
-            {/* Floating skill badges */}
+            {/* Floating skill badges — each sits at its own depth for parallax */}
             <div className="hero__badge hero__badge--react">⚛️ React</div>
             <div className="hero__badge hero__badge--node">🟢 Node.js</div>
             <div className="hero__badge hero__badge--mobile">📱 React Native</div>

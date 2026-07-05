@@ -15,7 +15,7 @@ export default function LoaderContent({ pct, style = {} }) {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#07091a', 
+        backgroundColor: '#05050f',
         color: '#f0f4ff',
         fontFamily: "'Space Grotesk', sans-serif",
         position: 'relative'
