@@ -37,11 +37,6 @@
   --shadow-btn:  0 4px 26px rgba(124,58,237,0.5);
   --shadow-3d:   0 30px 60px -15px rgba(0,0,0,0.7), 0 10px 24px -8px rgba(124,58,237,0.35);
 
-  --orb-1: rgba(139,92,246,0.2);
-  --orb-2: rgba(34,211,238,0.15);
-  --orb-3: rgba(236,72,153,0.12);
-  --grid-line: rgba(139,92,246,0.05);
-
   --scrollbar-thumb: #8b5cf6;
   --scrollbar-track: #090916;
 
@@ -89,11 +84,6 @@
   --shadow-card: 0 8px 30px rgba(0,0,0,0.1);
   --shadow-btn:  0 4px 22px rgba(124,58,237,0.35);
   --shadow-3d:   0 24px 50px -15px rgba(30,27,75,0.2), 0 8px 20px -8px rgba(124,58,237,0.15);
-
-  --orb-1: rgba(124,58,237,0.1);
-  --orb-2: rgba(8,145,178,0.08);
-  --orb-3: rgba(219,39,119,0.06);
-  --grid-line: rgba(124,58,237,0.05);
 
   --scrollbar-thumb: #7c3aed;
   --scrollbar-track: #ede9fe;
@@ -210,39 +200,6 @@ body::before {
   z-index: 0;
 }
 
-/* ── Orbs ── */
-.orb {
-  position: fixed;
-  border-radius: 50%;
-  filter: blur(90px);
-  pointer-events: none;
-  z-index: 0;
-  animation: orbFloat 12s ease-in-out infinite;
-}
-.orb-1 {
-  width: 700px; height: 700px;
-  top: -220px; right: -180px;
-  background: radial-gradient(circle, var(--orb-1), transparent 70%);
-}
-.orb-2 {
-  width: 550px; height: 550px;
-  bottom: -180px; left: -120px;
-  background: radial-gradient(circle, var(--orb-2), transparent 70%);
-  animation-delay: -5s;
-}
-.orb-3 {
-  width: 480px; height: 480px;
-  top: 40%; left: 55%;
-  background: radial-gradient(circle, var(--orb-3), transparent 70%);
-  animation-delay: -8s;
-  animation-duration: 15s;
-}
-
-@keyframes orbFloat {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50%       { transform: translateY(-50px) scale(1.06); }
-}
-
 /* ── Animated gradient text ── */
 .grad-text-animated {
   background: var(--grad-hero);
@@ -267,18 +224,6 @@ body::before {
   transform-style: preserve-3d;
   will-change: transform;
   transition: transform 0.15s ease-out, box-shadow 0.4s ease;
-}
-
-/* ── Grid background ── */
-.grid-bg {
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 64px 64px;
-  pointer-events: none;
-  z-index: 0;
 }
 
 /* ── Buttons ── */

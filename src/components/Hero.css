@@ -138,22 +138,28 @@
   transition: transform 0.1s ease-out;
 }
 
+@property --ring-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
 .hero__avatar-ring::before {
   content: '';
   position: absolute;
   inset: -3px;
   border-radius: 28px;
-  background: var(--grad-hero);
+  background: conic-gradient(from var(--ring-angle), #22d3ee, #8b5cf6, #ec4899, #22d3ee);
   padding: 3px;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-  animation: ring-rotate 10s linear infinite;
+  animation: ring-rotate 6s linear infinite;
 }
 
 @keyframes ring-rotate {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  from { --ring-angle: 0deg; }
+  to   { --ring-angle: 360deg; }
 }
 
 .hero__avatar-inner {

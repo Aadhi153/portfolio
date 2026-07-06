@@ -8,6 +8,7 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Dashboard from './components/Dashboard'
 import Preloader from './components/Preloader'
+import Background3D from './components/Background3D'
 import { ThemeProvider } from './ThemeContext'
 import { useState } from 'react'
 import { ArrowLeft } from 'lucide-react'
@@ -42,11 +43,8 @@ export default function App() {
         zIndex: 1, 
         pointerEvents: isAppReady ? 'auto' : 'none' 
       }}>
-        {/* Background decorations */}
-        <div className="grid-bg" />
-        <div className="orb orb-1" />
-        <div className="orb orb-2" />
-        <div className="orb orb-3" />
+        {/* Background decoration */}
+        <Background3D />
 
         <AnimatePresence>
           {isAppReady && (
