@@ -12,8 +12,8 @@ const highlights = [
 
 const details = [
   { icon: <MapPin size={16} />, label: 'Location', value: 'Tamil Nadu, India' },
-  { icon: <Mail size={16} />, label: 'Email', value: 'aadhi.piranav@email.com' },
-  { icon: <GraduationCap size={16} />, label: 'Education', value: 'B.S. in Computer Science' },
+  { icon: <Mail size={16} />, label: 'Email', value: 'aadhip153@gmail.com' },
+  { icon: <GraduationCap size={16} />, label: 'Education', value: 'B.E. Electronics and Communication Engineering, SNS College of Technology, Coimbatore (2021–2025)' },
   { icon: <Calendar size={16} />, label: 'Availability', value: 'Full-Time / Freelance' },
 ]
 
@@ -56,7 +56,7 @@ export default function About() {
                 <span>AP</span>
               </div>
               <h3 className="about__name">Aadhi Piranav</h3>
-              <p className="about__role-tag">Full Stack Developer</p>
+              <p className="about__role-tag">Full Stack & Mobile App Developer at AerixNova Technologies</p>
               
               <div className="about__highlights">
                 {highlights.map((h) => (

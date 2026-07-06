@@ -142,7 +142,7 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.55 }}
           >
-            <a href="https://github.com/AadhiPiranav" target="_blank" rel="noreferrer" className="hero__social-btn" aria-label="GitHub">
+            <a href="https://github.com/Aadhi153" target="_blank" rel="noreferrer" className="hero__social-btn" aria-label="GitHub">
               <GithubIcon />
             </a>
             <a href="https://linkedin.com/in/aadhipiranav" target="_blank" rel="noreferrer" className="hero__social-btn" aria-label="LinkedIn">
@@ -179,18 +179,10 @@ export default function Hero() {
             <div className="hero__badge hero__badge--mobile">📱 React Native</div>
           </div>
 
-          {/* Stats */}
-          <div className="hero__stats">
-            {[
-              { value: '3+', label: 'Years Exp.' },
-              { value: '20+', label: 'Projects' },
-              { value: '99%', label: 'Client Sat.' },
-            ].map((s) => (
-              <div key={s.label} className="hero__stat">
-                <span className="hero__stat-value">{s.value}</span>
-                <span className="hero__stat-label">{s.label}</span>
-              </div>
-            ))}
+          {/* Current role & flagship project, in place of unverifiable stats */}
+          <div className="hero__stats-line">
+            Currently building at <strong>AerixNova Technologies</strong> — shipped{' '}
+            <strong>FreshCart</strong>, a full-stack grocery ecommerce platform.
           </div>
         </motion.div>
       </div>

@@ -23,7 +23,7 @@ const contactInfo = [
 ]
 
 const socialLinks = [
-  { icon: <GithubIcon />, label: 'GitHub', href: 'https://github.com/AadhiPiranav' },
+  { icon: <GithubIcon />, label: 'GitHub', href: 'https://github.com/Aadhi153' },
   { icon: <LinkedinIcon />, label: 'LinkedIn', href: 'https://linkedin.com/in/aadhipiranav' },
   { icon: <Mail size={20} />, label: 'Email', href: 'mailto:aadhip153@gmail.com' },
 ]
@@ -45,18 +45,6 @@ export default function Contact() {
     e.preventDefault()
     setSending(true)
 
-    // Simulation Fallback: If no key is set, run simulated API delay
-    if (!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY === "YOUR_WEB3FORMS_KEY_HERE") {
-      setTimeout(() => {
-        setSending(false)
-        setSent(true)
-        setForm({ name: '', email: '', subject: '', message: '' })
-        setTimeout(() => setSent(false), 4000)
-      }, 1500)
-      return
-    }
-
-    // Real API email submission via Web3Forms
     try {
       const formData = new FormData()
       formData.append("access_key", WEB3FORMS_ACCESS_KEY)

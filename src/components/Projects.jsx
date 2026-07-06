@@ -12,6 +12,18 @@ const GithubIcon = ({ size = 18 }) => (
 
 const projects = [
   {
+    id: 'freshcart',
+    title: 'FreshCart',
+    description:
+      'Full-stack grocery ecommerce monorepo (~41K lines, 179 files) spanning a Next.js web app, React Native mobile app, and admin panel, backed by Supabase. Features OTP-only authentication (Twilio for phone, Supabase mailer for email), a complete shop/cart/checkout flow, and an admin dashboard.',
+    image: '/freshcart.png',
+    tags: ['Next.js', 'React Native', 'Supabase', 'TypeScript', 'Expo'],
+    tagColors: ['', 'cyan', 'pink', '', ''],
+    accent: '#34d399',
+    demo: null,
+    github: null,
+  },
+  {
     id: 'expense-tracker',
     title: 'Expense Tracker App',
     description:
@@ -20,20 +32,8 @@ const projects = [
     tags: ['React Native', 'Firebase', 'Expo', 'Redux'],
     tagColors: ['', 'cyan', 'pink', ''],
     accent: '#8b5cf6',
-    demo: '#',
-    github: '#',
-  },
-  {
-    id: 'ecommerce-site',
-    title: 'E-Commerce Website',
-    description:
-      'A full-featured online store with product listings, cart management, secure checkout, and an admin dashboard. Powered by Node.js REST APIs and a React frontend with smooth UX.',
-    image: '/ecommerce.png',
-    tags: ['React', 'Node.js', 'MongoDB', 'Express'],
-    tagColors: ['cyan', '', 'pink', ''],
-    accent: '#22d3ee',
-    demo: '#',
-    github: '#',
+    demo: null,
+    github: null,
   },
   {
     id: 'dashboard-app',
@@ -45,7 +45,7 @@ const projects = [
     tagColors: ['', 'cyan', 'pink', ''],
     accent: '#ec4899',
     demo: '#',
-    github: '#',
+    github: null,
   },
 ]
 
@@ -64,6 +64,9 @@ function ProjectCard({ project, index, onShowDashboard }) {
     ref(node)
     tilt.ref.current = node
   }
+
+  const hasDemo = Boolean(project.demo) || project.id === 'dashboard-app'
+  const hasGithub = Boolean(project.github)
 
   return (
     <motion.div
@@ -93,12 +96,16 @@ function ProjectCard({ project, index, onShowDashboard }) {
         />
         <div className="project-card__img-overlay">
           <div className="project-card__links">
-            <a href={project.demo} className="project-card__link" aria-label="Live Demo" onClick={handleDemoClick}>
-              <ExternalLink size={18} /> Live Demo
-            </a>
-            <a href={project.github} className="project-card__link project-card__link--ghost" aria-label="GitHub">
-              <GithubIcon size={18} />
-            </a>
+            {hasDemo && (
+              <a href={project.demo} className="project-card__link" aria-label="Live Demo" onClick={handleDemoClick}>
+                <ExternalLink size={18} /> Live Demo
+              </a>
+            )}
+            {hasGithub && (
+              <a href={project.github} target="_blank" rel="noreferrer" className="project-card__link project-card__link--ghost" aria-label="GitHub">
+                <GithubIcon size={18} />
+              </a>
+            )}
           </div>
         </div>
         <div className="project-card__number">0{index + 1}</div>
@@ -116,12 +123,16 @@ function ProjectCard({ project, index, onShowDashboard }) {
         </div>
 
         <div className="project-card__footer">
-          <a href={project.demo} className="btn btn-primary project-card__btn" id={`demo-${project.id}`} onClick={handleDemoClick}>
-            <ExternalLink size={14} /> Live Demo
-          </a>
-          <a href={project.github} className="btn btn-outline project-card__btn" id={`github-${project.id}`}>
-            <GithubIcon size={14} /> Code
-          </a>
+          {hasDemo && (
+            <a href={project.demo} className="btn btn-primary project-card__btn" id={`demo-${project.id}`} onClick={handleDemoClick}>
+              <ExternalLink size={14} /> Live Demo
+            </a>
+          )}
+          {hasGithub && (
+            <a href={project.github} target="_blank" rel="noreferrer" className="btn btn-outline project-card__btn" id={`github-${project.id}`}>
+              <GithubIcon size={14} /> Code
+            </a>
+          )}
         </div>
       </div>
     </motion.div>
