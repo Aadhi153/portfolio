@@ -129,32 +129,23 @@
 
 .hero__avatar-ring {
   position: relative;
-  width: 370px;
-  height: 370px;
+  width: 420px;
+  height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transform-style: preserve-3d;
-  transition: transform 0.1s ease-out;
+  border: 3px solid transparent;
+  border-radius: 20px;
+  background:
+    linear-gradient(var(--bg-primary), var(--bg-primary)) padding-box,
+    conic-gradient(from var(--ring-angle), #22d3ee, #8b5cf6, #ec4899, #22d3ee) border-box;
+  animation: ring-rotate 6s linear infinite;
 }
 
 @property --ring-angle {
   syntax: '<angle>';
   inherits: false;
   initial-value: 0deg;
-}
-
-.hero__avatar-ring::before {
-  content: '';
-  position: absolute;
-  inset: -3px;
-  border-radius: 28px;
-  background: conic-gradient(from var(--ring-angle), #22d3ee, #8b5cf6, #ec4899, #22d3ee);
-  padding: 3px;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  animation: ring-rotate 6s linear infinite;
 }
 
 @keyframes ring-rotate {
@@ -166,7 +157,7 @@
   width: 100%;
   height: 100%;
   background: transparent;
-  border-radius: 24px;
+  border-radius: 16px;
   border: 1px solid var(--border);
   display: flex;
   align-items: center;
@@ -175,10 +166,9 @@
   position: relative;
   box-shadow: inset 0 0 60px rgba(139,92,246,0.08);
   transition: border-color 0.4s ease;
-  transform: translateZ(0px);
 }
 
-.hero__canvas-wrap {
+.hero__code-wrap {
   position: absolute;
   inset: 0;
   overflow: hidden;
@@ -200,18 +190,13 @@
   box-shadow: 0 4px 16px rgba(0,0,0,0.25);
   transition: border-color 0.4s ease;
 }
-.hero__badge--react  { top: -18px;   left: -44px;   animation-delay: 0s;    border-color: rgba(139,92,246,0.4);  }
-.hero__badge--node   { bottom: -18px; right: -34px;  animation-delay: -1.5s; border-color: rgba(52,211,153,0.4);  }
-.hero__badge--mobile { top: 50%;      right: -60px;  animation-delay: -0.8s; border-color: rgba(34,211,238,0.4); }
+.hero__badge--react  { top: -18px;    left: -44px;  animation-delay: 0s;    border-color: rgba(139,92,246,0.4); }
+.hero__badge--node   { bottom: -18px; right: -34px; animation-delay: -1.5s; border-color: rgba(52,211,153,0.4); }
+.hero__badge--mobile { bottom: -18px; left: -44px;  animation-delay: -0.8s; border-color: rgba(34,211,238,0.4); }
 
 @keyframes badge-float {
   0%,100% { transform: translateZ(70px) translateY(0); }
   50%     { transform: translateZ(70px) translateY(-8px); }
-}
-.hero__badge--mobile { animation-name: badge-float-x; }
-@keyframes badge-float-x {
-  0%,100% { transform: translateZ(70px) translateY(-50%) translateX(0); }
-  50%     { transform: translateZ(70px) translateY(-50%) translateX(5px); }
 }
 
 /* Role / project line */
@@ -270,7 +255,7 @@
   .hero__actions { justify-content: center; }
   .hero__socials { justify-content: center; }
   .hero__visual  { order: -1; }
-  .hero__avatar-ring { width: 290px; height: 290px; }
+  .hero__avatar-ring { width: min(420px, 90vw); height: 260px; }
   .hero__badge--mobile { display: none; }
   .hero__badge--react  { left: -8px; }
   .hero__badge--node   { right: -8px; }
@@ -279,8 +264,8 @@
 
 @media (max-width: 480px) {
   .hero__avatar-ring {
-    width: 240px;
-    height: 240px;
+    width: min(360px, 92vw);
+    height: 220px;
   }
   .hero__badge {
     padding: 5px 10px;
@@ -310,12 +295,8 @@
 
 @media (max-width: 360px) {
   .hero__avatar-ring {
-    width: 200px;
-    height: 200px;
-  }
-  .hero__avatar-code {
-    font-size: 0.73rem;
-    padding: 16px;
+    width: min(320px, 94vw);
+    height: 190px;
   }
   .hero__badge--react {
     left: -8px;

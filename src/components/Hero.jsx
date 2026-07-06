@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Download, ArrowDown, Sparkles } from 'lucide-react'
-import Hero3D from './Hero3D'
+import CodeWindow from './CodeWindow'
 import './Hero.css'
 
 const GithubIcon = () => (
@@ -56,19 +56,6 @@ function useTypewriter(words, { typeSpeed = 75, deleteSpeed = 40, pause = 1500 }
 
 export default function Hero() {
   const roleText = useTypewriter(roles)
-  const visualRef = useRef(null)
-  const [tilt, setTilt] = useState({ x: 0, y: 0 })
-
-  const handleMouseMove = useCallback((e) => {
-    const el = visualRef.current
-    if (!el) return
-    const rect = el.getBoundingClientRect()
-    const px = (e.clientX - rect.left) / rect.width
-    const py = (e.clientY - rect.top) / rect.height
-    setTilt({ x: (0.5 - py) * 18, y: (px - 0.5) * 18 })
-  }, [])
-
-  const handleMouseLeave = useCallback(() => setTilt({ x: 0, y: 0 }), [])
 
   return (
     <section id="home" className="hero section">
@@ -155,25 +142,19 @@ export default function Hero() {
 
         {/* Right — Avatar / Visual */}
         <motion.div
-          className="hero__visual perspective"
+          className="hero__visual"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-          ref={visualRef}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
         >
-          <div
-            className="hero__avatar-ring"
-            style={{ transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` }}
-          >
+          <div className="hero__avatar-ring">
             <div className="hero__avatar-inner">
-              <div className="hero__canvas-wrap">
-                <Hero3D />
+              <div className="hero__code-wrap">
+                <CodeWindow />
               </div>
             </div>
 
-            {/* Floating skill badges — each sits at its own depth for parallax */}
+            {/* Floating skill badges */}
             <div className="hero__badge hero__badge--react">⚛️ React</div>
             <div className="hero__badge hero__badge--node">🟢 Node.js</div>
             <div className="hero__badge hero__badge--mobile">📱 React Native</div>
