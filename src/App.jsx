@@ -8,7 +8,7 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Dashboard from './components/Dashboard'
 import Preloader from './components/Preloader'
-import Background3D from './components/Background3D'
+import NetworkBackground from './components/NetworkBackground'
 import { ThemeProvider } from './ThemeContext'
 import { useState } from 'react'
 import { ArrowLeft } from 'lucide-react'
@@ -44,7 +44,7 @@ export default function App() {
         pointerEvents: isAppReady ? 'auto' : 'none' 
       }}>
         {/* Background decoration */}
-        <Background3D />
+        <NetworkBackground />
 
         <AnimatePresence>
           {isAppReady && (
