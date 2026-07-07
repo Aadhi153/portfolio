@@ -2,12 +2,22 @@
   margin-bottom: 60px;
 }
 
+.skills .section-title {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.skills .section-subtitle {
+  font-weight: 400;
+  line-height: 1.7;
+}
+
 /* Category cards grid */
 .skills__categories-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  align-items: start;
+  align-items: stretch;
 }
 
 .skills__category-card {
@@ -15,6 +25,18 @@
   flex-direction: column;
   gap: 16px;
   padding: 22px 26px;
+  height: 100%;
+  /* Solid-enough backdrop so the constellation canvas behind the page never
+     shows through the card (was bleeding a stray link line through the header) */
+  background: rgba(15, 10, 36, 0.85);
+  position: relative;
+  z-index: 2;
+  transition: transform 0.2s ease-out, border-color 0.2s ease;
+}
+
+.skills__category-card.card:hover {
+  border-color: var(--accent-cyan);
+  transform: translateY(-3px);
 }
 
 .skills__category-header {
@@ -50,6 +72,26 @@
   gap: 8px;
   position: relative;
   z-index: 1;
+}
+
+.skills__category-tags .tag {
+  transition: transform 0.2s ease-out, background 0.2s ease, border-color 0.2s ease;
+}
+
+.skills__category-tags .tag:hover {
+  transform: scale(1.05);
+}
+
+/* Core, shipped skills get a bolder filled badge; everything else stays outline */
+.skills__category-tags .badge-core {
+  background: rgba(34, 211, 238, 0.24);
+  border-color: rgba(34, 211, 238, 0.6);
+  font-weight: 700;
+}
+
+.skills__category-tags .badge-standard {
+  background: rgba(34, 211, 238, 0.05);
+  border-color: rgba(34, 211, 238, 0.22);
 }
 
 /* ── Responsive ── */

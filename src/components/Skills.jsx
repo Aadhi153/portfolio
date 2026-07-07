@@ -1,8 +1,12 @@
 import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
-import { Brain, Code, Database, Terminal } from 'lucide-react'
+import { Brain, Code, Database, Smartphone } from 'lucide-react'
 import useTilt from '../hooks/useTilt'
 import './Skills.css'
+
+const CORE_SKILLS = new Set([
+  'React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'React Native', 'Node.js', 'Supabase',
+])
 
 const categories = [
   {
@@ -11,16 +15,51 @@ const categories = [
     tags: ['React', 'Next.js', 'TypeScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'Redux', 'Framer Motion'],
   },
   {
-    icon: <Terminal size={18} />,
-    title: 'Back-End & Mobile',
-    tags: ['Node.js', 'Express.js', 'React Native', 'Expo', 'EAS Build', 'Twilio', 'GraphQL', 'REST APIs', 'Python'],
+    icon: <Smartphone size={18} />,
+    title: 'Mobile',
+    tags: ['React Native', 'Expo', 'EAS Build', 'Twilio'],
   },
   {
     icon: <Database size={18} />,
-    title: 'Cloud & Database',
-    tags: ['Supabase', 'MongoDB', 'PostgreSQL', 'SQL', 'Firebase', 'AWS', 'Docker', 'Git & GitHub'],
+    title: 'Back-End & Data',
+    tags: ['Node.js', 'Express.js', 'REST APIs', 'Python', 'Supabase', 'Firebase', 'Git & GitHub'],
   },
 ]
+
+const sectionVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.07 } },
+}
+
+const headerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.06 } },
+}
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+}
+
+const cardsListVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08 } },
+}
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 24, rotateX: -12 },
+  visible: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+}
+
+const badgesVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.05 } },
+}
+
+const badgeVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: 'easeOut' } },
+}
 
 function CategoryCard({ cat }) {
   const tilt = useTilt({ strength: 6, lift: 12, scale: 1.01 })
@@ -36,11 +75,17 @@ function CategoryCard({ cat }) {
         <div className="skills__category-icon">{cat.icon}</div>
         <h3 className="skills__category-title">{cat.title}</h3>
       </div>
-      <div className="skills__category-tags">
+      <motion.div className="skills__category-tags" variants={badgesVariants}>
         {cat.tags.map((tag) => (
-          <span key={tag} className="tag cyan">{tag}</span>
+          <motion.span
+            key={tag}
+            variants={badgeVariants}
+            className={`tag cyan ${CORE_SKILLS.has(tag) ? 'badge-core' : 'badge-standard'}`}
+          >
+            {tag}
+          </motion.span>
         ))}
-      </div>
+      </motion.div>
     </div>
   )
 }
@@ -50,33 +95,29 @@ export default function Skills() {
 
   return (
     <section id="skills" className="skills section" ref={ref}>
-      <div className="container">
-        <motion.div
-          className="skills__header"
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="section-badge"><Brain size={12} /> Skills</span>
-          <h2 className="section-title">My Technical Stack</h2>
-          <p className="section-subtitle">
-            A curated list of frameworks, libraries, and languages I use to bring modern digital designs to life.
-          </p>
+      <motion.div
+        className="container"
+        variants={sectionVariants}
+        initial="hidden"
+        animate={inView ? 'visible' : 'hidden'}
+      >
+        <motion.div className="skills__header" variants={headerVariants}>
+          <motion.span className="section-badge" variants={fadeUp}><Brain size={12} /> Skills</motion.span>
+          <motion.h2 className="section-title" variants={fadeUp}>My Technical Stack</motion.h2>
+          <motion.p className="section-subtitle" variants={fadeUp}>
+            A curated list of frameworks, libraries, and languages I use to bring modern digital
+            products to life — refined while shipping FreshCart and AerixNova into production.
+          </motion.p>
         </motion.div>
 
-        <div className="skills__categories-list">
-          {categories.map((cat, i) => (
-            <motion.div
-              key={cat.title}
-              initial={{ opacity: 0, y: 24, rotateX: -12 }}
-              animate={inView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
-            >
+        <motion.div className="skills__categories-list" variants={cardsListVariants}>
+          {categories.map((cat) => (
+            <motion.div key={cat.title} variants={cardVariants}>
               <CategoryCard cat={cat} />
             </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   )
 }
