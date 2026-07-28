@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
-import { Mail, Send, CheckCircle, MapPin, Clock } from 'lucide-react'
+import { Mail, Send, CheckCircle, MapPin, Clock, Phone } from 'lucide-react'
 import './Contact.css'
 
 const GithubIcon = () => (
@@ -18,19 +18,18 @@ const LinkedinIcon = () => (
 
 const contactInfo = [
   { icon: <Mail size={20} />, label: 'Email', value: 'aadhip153@gmail.com', href: 'mailto:aadhip153@gmail.com' },
-  { icon: <MapPin size={20} />, label: 'Location', value: 'Tamil Nadu, India', href: '#' },
+  { icon: <Phone size={20} />, label: 'Phone', value: '+91 7094578249', href: 'tel:+917094578249' },
+  { icon: <MapPin size={20} />, label: 'Location', value: 'Namakkal, Tamil Nadu', href: '#' },
   { icon: <Clock size={20} />, label: 'Availability', value: 'Open to opportunities', href: '#' },
 ]
 
 const socialLinks = [
   { icon: <GithubIcon />, label: 'GitHub', href: 'https://github.com/Aadhi153' },
-  { icon: <LinkedinIcon />, label: 'LinkedIn', href: 'https://linkedin.com/in/aadhipiranav' },
+  { icon: <LinkedinIcon />, label: 'LinkedIn', href: 'https://linkedin.com/in/aadhi-piranav-r-t' },
   { icon: <Mail size={20} />, label: 'Email', href: 'mailto:aadhip153@gmail.com' },
 ]
 
-// Set your Web3Forms access key here to receive real emails!
-// Get a free key instantly by entering your email (aadhip153@gmail.com) at https://web3forms.com
-const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_KEY_HERE"
+const CONTACT_EMAIL = 'aadhip153@gmail.com'
 
 export default function Contact() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
@@ -41,42 +40,20 @@ export default function Contact() {
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     setSending(true)
 
-    try {
-      const formData = new FormData()
-      formData.append("access_key", WEB3FORMS_ACCESS_KEY)
-      formData.append("name", form.name)
-      formData.append("email", form.email)
-      formData.append("subject", form.subject)
-      formData.append("message", form.message)
-      formData.append("from_name", "Portfolio Contact Form")
+    const body = `From: ${form.name} (${form.email})\n\n${form.message}`
+    const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(form.subject)}&body=${encodeURIComponent(body)}`
+    window.location.href = mailtoUrl
 
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Accept": "application/json"
-        },
-        body: formData
-      })
-      
-      const data = await response.json()
-      
-      if (data.success) {
-        setSent(true)
-        setForm({ name: '', email: '', subject: '', message: '' })
-        setTimeout(() => setSent(false), 4000)
-      } else {
-        alert(data.message || "Something went wrong. Please check your Web3Forms key.")
-      }
-    } catch (error) {
-      console.error("Submission error:", error)
-      alert("Failed to send message. Please check your internet connection.")
-    } finally {
+    setTimeout(() => {
       setSending(false)
-    }
+      setSent(true)
+      setForm({ name: '', email: '', subject: '', message: '' })
+      setTimeout(() => setSent(false), 4000)
+    }, 500)
   }
 
   return (

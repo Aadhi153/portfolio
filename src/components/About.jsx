@@ -11,9 +11,9 @@ const highlights = [
 ]
 
 const details = [
-  { icon: <MapPin size={16} />, label: 'Location', value: 'Tamil Nadu, India' },
+  { icon: <MapPin size={16} />, label: 'Location', value: 'Namakkal, Tamil Nadu' },
   { icon: <Mail size={16} />, label: 'Email', value: 'aadhip153@gmail.com' },
-  { icon: <GraduationCap size={16} />, label: 'Education', value: 'B.E. Electronics and Communication Engineering, SNS College of Technology, Coimbatore (2021–2025)' },
+  { icon: <GraduationCap size={16} />, label: 'Education', value: 'B.E. Electronics and Communication Engineering, SNS College of Technology, Coimbatore (2021–2025) · CGPA 7.78' },
   { icon: <Calendar size={16} />, label: 'Availability', value: 'Full-Time / Freelance' },
 ]
 
@@ -56,7 +56,7 @@ export default function About() {
                 <span>AP</span>
               </div>
               <h3 className="about__name">Aadhi Piranav</h3>
-              <p className="about__role-tag">Full Stack & Mobile App Developer at AerixNova Technologies</p>
+              <p className="about__role-tag">Full Stack & React Native Developer at AerixNova Technologies</p>
               
               <div className="about__highlights">
                 {highlights.map((h) => (
@@ -85,10 +85,9 @@ export default function About() {
                 Designing High-Impact Digital Experiences
               </h3>
               <p className="about__desc">
-                I'm a passionate Full Stack Developer specializing in mobile and web applications.
-                My expertise lies in building responsive web applications using <strong>React</strong> and 
-                efficient, cross-platform mobile apps with <strong>React Native</strong>. On the server side, 
-                I write scalable backend services with <strong>Node.js</strong> and manage robust database systems.
+                <strong>Full Stack &amp; React Native Developer</strong> with production experience delivering
+                cross-platform applications end to end — from UI design through backend integration and
+                deployment. Additional background in data cleaning, KPI reporting, and Power BI dashboarding.
               </p>
               <p className="about__desc">
                 I believe that programming is not just about writing code, but about solving real-world challenges
