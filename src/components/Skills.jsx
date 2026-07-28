@@ -1,28 +1,38 @@
 import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
-import { Brain, Code, Database, Smartphone } from 'lucide-react'
+import { Brain, Code, Database, Smartphone, CreditCard, BarChart3 } from 'lucide-react'
 import useTilt from '../hooks/useTilt'
 import './Skills.css'
 
 const CORE_SKILLS = new Set([
-  'React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'React Native', 'Node.js', 'Supabase',
+  'React Native', 'React.js', 'Next.js', 'TypeScript', 'Node.js', 'Supabase (RLS, Realtime, Storage, Auth)', 'Power BI',
 ])
 
 const categories = [
   {
-    icon: <Code size={18} />,
-    title: 'Front-End / UI',
-    tags: ['React', 'Next.js', 'TypeScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'Redux', 'Framer Motion'],
-  },
-  {
     icon: <Smartphone size={18} />,
     title: 'Mobile',
-    tags: ['React Native', 'Expo', 'EAS Build', 'Twilio'],
+    tags: ['React Native', 'JavaScript (JSX)', 'Expo', 'EAS Build', 'React Navigation', 'Google Sign-In (OAuth)'],
+  },
+  {
+    icon: <Code size={18} />,
+    title: 'Frontend',
+    tags: ['React.js', 'Next.js', 'HTML', 'CSS', 'Tailwind CSS', 'TypeScript'],
   },
   {
     icon: <Database size={18} />,
-    title: 'Back-End & Data',
-    tags: ['Node.js', 'Express.js', 'REST APIs', 'Python', 'Supabase', 'Firebase', 'Git & GitHub'],
+    title: 'Backend',
+    tags: ['Node.js', 'Express.js', 'REST APIs', 'PostgreSQL', 'Supabase (RLS, Realtime, Storage, Auth)', 'PL/pgSQL'],
+  },
+  {
+    icon: <CreditCard size={18} />,
+    title: 'Payments & Integrations',
+    tags: ['Stripe API', 'Nodemailer'],
+  },
+  {
+    icon: <BarChart3 size={18} />,
+    title: 'Data Analysis & BI',
+    tags: ['Data Cleaning', 'EDA', 'KPI Tracking', 'Power BI', 'DAX', 'Excel Dashboards'],
   },
 ]
 
@@ -106,7 +116,7 @@ export default function Skills() {
           <motion.h2 className="section-title" variants={fadeUp}>My Technical Stack</motion.h2>
           <motion.p className="section-subtitle" variants={fadeUp}>
             A curated list of frameworks, libraries, and languages I use to bring modern digital
-            products to life — refined while shipping FreshCart and AerixNova into production.
+            products to life — refined while building FreshCart and shipping products at AerixNova Technologies.
           </motion.p>
         </motion.div>
 

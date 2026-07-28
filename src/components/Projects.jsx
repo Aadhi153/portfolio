@@ -14,34 +14,23 @@ const projects = [
   {
     id: 'freshcart',
     title: 'FreshCart',
+    status: 'In Progress',
     description:
-      'Full-stack grocery ecommerce monorepo (~41K lines, 179 files) spanning a Next.js web app, React Native mobile app, and admin panel, backed by Supabase. Features OTP-only authentication (Twilio for phone, Supabase mailer for email), a complete shop/cart/checkout flow, and an admin dashboard.',
-    image: '/freshcart.png',
-    tags: ['Next.js', 'React Native', 'Supabase', 'TypeScript', 'Expo'],
-    tagColors: ['', 'cyan', 'pink', '', ''],
+      'Full-stack e-commerce platform of four applications — web storefront, admin dashboard, mobile app, and backend API — built as a monorepo with shared TypeScript packages. Designed a PostgreSQL schema in Supabase with 16 migrations and Row-Level Security policies, and implemented OTP-based authentication via Twilio alongside Stripe API payment processing for checkout.',
+    image: '/ecommerce.png',
+    tags: ['TypeScript', 'Next.js', 'React Native', 'Node.js', 'PostgreSQL', 'Supabase', 'Stripe API'],
+    tagColors: ['', 'cyan', 'pink', '', '', 'cyan', 'pink'],
     accent: '#34d399',
     demo: null,
-    github: null,
+    github: 'https://github.com/Aadhi153/FreshCart--Ecom',
   },
   {
-    id: 'expense-tracker',
-    title: 'Expense Tracker App',
+    id: 'pizza-sales-dashboard',
+    title: 'Pizza Sales Dashboard',
     description:
-      'A feature-rich personal finance app built with React Native & Firebase. Track spending, set budgets, visualize trends with interactive charts, and get smart saving insights — all in real time.',
-    image: '/expense-tracker.png',
-    tags: ['React Native', 'Firebase', 'Expo', 'Redux'],
-    tagColors: ['', 'cyan', 'pink', ''],
-    accent: '#8b5cf6',
-    demo: null,
-    github: null,
-  },
-  {
-    id: 'dashboard-app',
-    title: 'Patient Wait List Analysis',
-    description:
-      'A comprehensive healthcare analytics dashboard built to analyze patient wait lists. Features include multi-dimensional filtering, specialty ranking, and trend analysis — originally modeled from Power BI insights.',
+      'An interactive business dashboard built during my data analyst internship, with DAX-driven KPI reports, drill-down filters, and sales trend analysis across pizza categories, order volume, and monthly revenue — modeled from Power BI insights.',
     image: '/dashboard.png',
-    tags: ['React', 'Power BI', 'Data Analysis', 'Recharts'],
+    tags: ['Power BI', 'DAX', 'Data Analysis', 'Excel'],
     tagColors: ['', 'cyan', 'pink', ''],
     accent: '#ec4899',
     demo: '#',
@@ -54,7 +43,7 @@ function ProjectCard({ project, index, onShowDashboard }) {
   const tilt = useTilt({ strength: 7, lift: 18, scale: 1.02 })
 
   const handleDemoClick = (e) => {
-    if (project.id === 'dashboard-app') {
+    if (project.id === 'pizza-sales-dashboard') {
       e.preventDefault();
       onShowDashboard();
     }
@@ -65,7 +54,7 @@ function ProjectCard({ project, index, onShowDashboard }) {
     tilt.ref.current = node
   }
 
-  const hasDemo = Boolean(project.demo) || project.id === 'dashboard-app'
+  const hasDemo = Boolean(project.demo) || project.id === 'pizza-sales-dashboard'
   const hasGithub = Boolean(project.github)
 
   return (
@@ -109,6 +98,7 @@ function ProjectCard({ project, index, onShowDashboard }) {
           </div>
         </div>
         <div className="project-card__number">0{index + 1}</div>
+        {project.status && <div className="project-card__status">{project.status}</div>}
       </div>
 
       {/* Content */}
