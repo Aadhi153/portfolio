@@ -12,41 +12,42 @@ import './Dashboard.css';
 
 // --- Mock Data ---
 const kpiData = [
-  { label: 'Latest Month Wait List', value: '679K', trend: '+12%', color: 'var(--accent-purple)' },
-  { label: 'PY Latest Month Wait List', value: '620K', trend: '+5%', color: 'var(--accent-pink)' },
+  { label: 'Total Revenue (YTD)', value: '$86.4K', trend: '+8%', color: 'var(--accent-purple)' },
+  { label: 'Total Orders (YTD)', value: '21.3K', trend: '+5%', color: 'var(--accent-pink)' },
 ];
 
 const caseTypeData = [
-  { name: 'Outpatient', value: 80, color: '#0088FE' },
-  { name: 'Day Case', value: 19, color: '#00C49F' },
-  { name: 'Inpatient', value: 12, color: '#FFBB28' },
+  { name: 'Classic', value: 45, color: '#0088FE' },
+  { name: 'Supreme', value: 28, color: '#00C49F' },
+  { name: 'Veggie', value: 15, color: '#FFBB28' },
+  { name: 'Chicken', value: 12, color: '#a78bfa' },
 ];
 
 const timeBandData = [
-  { band: '18+ Months', '0-15': 118, '16-64': 94, '65+': 133, total: 345 },
-  { band: '0-3 Months', '0-15': 66, '16-64': 45, '65+': 108, total: 219 },
-  { band: '3-6 Months', '0-15': 51, '16-64': 44, '65+': 74, total: 169 },
-  { band: '6-9 Months', '0-15': 44, '16-64': 40, '65+': 60, total: 144 },
-  { band: '9-12 Months', '0-15': 38, '16-64': 35, '65+': 52, total: 125 },
-  { band: '12-15 Months', '0-15': 32, '16-64': 30, '65+': 45, total: 107 },
-  { band: '15-18 Months', '0-15': 28, '16-64': 25, '65+': 40, total: 93 },
+  { band: 'Q1 2019', 'Small': 28, 'Medium': 94, 'Large': 133, total: 255 },
+  { band: 'Q2 2019', 'Small': 22, 'Medium': 88, 'Large': 128, total: 238 },
+  { band: 'Q3 2019', 'Small': 26, 'Medium': 96, 'Large': 140, total: 262 },
+  { band: 'Q4 2019', 'Small': 30, 'Medium': 102, 'Large': 148, total: 280 },
+  { band: 'Q1 2020', 'Small': 24, 'Medium': 90, 'Large': 135, total: 249 },
+  { band: 'Q2 2020', 'Small': 32, 'Medium': 110, 'Large': 155, total: 297 },
+  { band: 'Q3 2020', 'Small': 35, 'Medium': 118, 'Large': 162, total: 315 },
 ];
 
 const trendData = [
-  { date: 'Jul 2018', outpatient: 52000, dayCase: 15000, inpatient: 8000 },
-  { date: 'Jan 2019', outpatient: 53500, dayCase: 14800, inpatient: 8200 },
-  { date: 'Jul 2019', outpatient: 51000, dayCase: 15200, inpatient: 7900 },
-  { date: 'Jan 2020', outpatient: 54000, dayCase: 14500, inpatient: 8500 },
-  { date: 'Jul 2020', outpatient: 58000, dayCase: 16000, inpatient: 9000 },
-  { date: 'Jan 2021', outpatient: 60500, dayCase: 15800, inpatient: 8800 },
+  { date: 'Jul 2018', classic: 5200, supreme: 3100, veggie: 1600 },
+  { date: 'Jan 2019', classic: 5350, supreme: 3050, veggie: 1650 },
+  { date: 'Jul 2019', classic: 5100, supreme: 3200, veggie: 1580 },
+  { date: 'Jan 2020', classic: 5700, supreme: 3350, veggie: 1720 },
+  { date: 'Jul 2020', classic: 6100, supreme: 3600, veggie: 1810 },
+  { date: 'Jan 2021', classic: 6350, supreme: 3750, veggie: 1890 },
 ];
 
 const specialtyData = [
-  { name: 'Accident & Emergency', count: 80 },
-  { name: 'Ophthalmology', count: 36 },
-  { name: 'Paed Orthopaedic', count: 34 },
-  { name: 'Paediatric Respiratory Med', count: 35 },
-  { name: 'Pain Relief', count: 26 },
+  { name: 'Classic Pepperoni', count: 80 },
+  { name: 'BBQ Chicken', count: 36 },
+  { name: 'Margherita', count: 34 },
+  { name: 'Veggie Supreme', count: 35 },
+  { name: 'Hawaiian', count: 26 },
 ];
 
 export default function Dashboard() {
@@ -58,8 +59,8 @@ export default function Dashboard() {
       {/* Header / Nav */}
       <header className="dashboard-header">
         <div className="dashboard-title">
-          <h1>{view === 'summary' ? 'Patient Wait List Analysis' : 'Detailed View'}</h1>
-          <span className="last-updated">Last Updated: Jan 23, 2021</span>
+          <h1>{view === 'summary' ? 'Pizza Sales Dashboard' : 'Detailed View'}</h1>
+          <span className="last-updated">Last Updated: Nov 2025</span>
         </div>
         
         <div className="dashboard-controls">
@@ -94,19 +95,19 @@ export default function Dashboard() {
             exit={{ height: 0, opacity: 0 }}
           >
             <div className="filter-group">
-              <label><Calendar size={14} /> Archive Date</label>
+              <label><Calendar size={14} /> Order Date Range</label>
               <div className="date-inputs">
-                <input type="text" defaultValue="31-01-2018" />
+                <input type="text" defaultValue="01-06-2025" />
                 <span>to</span>
-                <input type="text" defaultValue="23-01-2021" />
+                <input type="text" defaultValue="30-11-2025" />
               </div>
             </div>
             <div className="filter-group">
-              <label>Case Type</label>
+              <label>Pizza Category</label>
               <select><option>All</option></select>
             </div>
             <div className="filter-group">
-              <label>Specialty Name</label>
+              <label>Store Region</label>
               <select><option>All</option></select>
             </div>
           </motion.div>
@@ -136,7 +137,7 @@ export default function Dashboard() {
 
             <div className="main-chart-card card-glass">
               <div className="card-header">
-                <h3>Key Indicators - Patient Wait List (Average)</h3>
+                <h3>Quarterly Orders by Size</h3>
                 <div className="chart-actions">
                   <button className="active">Average</button>
                   <button>Median</button>
@@ -147,21 +148,21 @@ export default function Dashboard() {
                   <BarChart data={timeBandData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                     <XAxis dataKey="band" axisLine={false} tickLine={false} tick={{fill: 'var(--text-secondary)', fontSize: 12}} />
                     <YAxis hide />
-                    <Tooltip 
+                    <Tooltip
                       contentStyle={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border)', borderRadius: '8px' }}
                       itemStyle={{ color: '#fff' }}
                     />
                     <Legend iconType="circle" />
-                    <Bar dataKey="0-15" stackId="a" fill="var(--accent-cyan)" radius={[0, 0, 0, 0]} />
-                    <Bar dataKey="16-64" stackId="a" fill="#3b82f6" />
-                    <Bar dataKey="65+" stackId="a" fill="var(--accent-purple)" radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="Small" stackId="a" fill="var(--accent-cyan)" radius={[0, 0, 0, 0]} />
+                    <Bar dataKey="Medium" stackId="a" fill="#3b82f6" />
+                    <Bar dataKey="Large" stackId="a" fill="var(--accent-purple)" radius={[4, 4, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
             </div>
 
             <div className="specialty-list card-glass">
-              <h3>Specialty Ranking</h3>
+              <h3>Top Selling Pizzas</h3>
               <div className="specialty-items">
                 {specialtyData.map((item, i) => (
                   <div key={i} className="specialty-item">
@@ -176,7 +177,7 @@ export default function Dashboard() {
           {/* Middle Row: Donut and Trends */}
           <div className="dashboard-row middle-row">
             <div className="donut-card card-glass">
-              <h3>Wait List by Case Type</h3>
+              <h3>Sales by Pizza Category</h3>
               <div className="donut-wrapper">
                 <ResponsiveContainer width="100%" height={250}>
                   <PieChart>
@@ -196,14 +197,14 @@ export default function Dashboard() {
                   </PieChart>
                 </ResponsiveContainer>
                 <div className="donut-center">
-                  <div className="center-val">54</div>
-                  <div className="center-label">Overall</div>
+                  <div className="center-val">100</div>
+                  <div className="center-label">% of Sales</div>
                 </div>
               </div>
             </div>
 
             <div className="trend-card card-glass">
-              <h3>Wait List Trends</h3>
+              <h3>Monthly Sales Trend</h3>
               <ResponsiveContainer width="100%" height={250}>
                 <AreaChart data={trendData}>
                   <defs>
@@ -215,8 +216,8 @@ export default function Dashboard() {
                   <XAxis dataKey="date" axisLine={false} tickLine={false} tick={{fill: 'var(--text-secondary)', fontSize: 11}} />
                   <YAxis axisLine={false} tickLine={false} tick={{fill: 'var(--text-secondary)', fontSize: 11}} />
                   <Tooltip />
-                  <Area type="monotone" dataKey="outpatient" stroke="var(--accent-cyan)" fillOpacity={1} fill="url(#colorOut)" />
-                  <Line type="monotone" dataKey="dayCase" stroke="var(--accent-pink)" dot={false} strokeWidth={2} />
+                  <Area type="monotone" dataKey="classic" stroke="var(--accent-cyan)" fillOpacity={1} fill="url(#colorOut)" />
+                  <Line type="monotone" dataKey="supreme" stroke="var(--accent-pink)" dot={false} strokeWidth={2} />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
@@ -229,42 +230,42 @@ export default function Dashboard() {
               <table className="matrix-table">
                 <thead>
                   <tr>
-                    <th>Specialty / Age</th>
-                    <th>Day Case</th>
-                    <th>Inpatient</th>
-                    <th>Outpatient</th>
+                    <th>Category / Size</th>
+                    <th>Small</th>
+                    <th>Medium</th>
+                    <th>Large</th>
                     <th className="total-col">Total</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr className="group-header">
-                    <td>31 January 2018</td>
-                    <td>57,267</td>
-                    <td>22,937</td>
-                    <td>502,482</td>
-                    <td className="total-col">582,686</td>
+                    <td>Nov 2025</td>
+                    <td>572</td>
+                    <td>2,293</td>
+                    <td>5,024</td>
+                    <td className="total-col">7,889</td>
                   </tr>
                   <tr>
-                    <td className="indent-1">Accident & Emergency</td>
+                    <td className="indent-1">Classic Pepperoni</td>
                     <td>...</td>
                     <td>...</td>
                     <td>...</td>
-                    <td className="total-col">502,482</td>
+                    <td className="total-col">3,502</td>
                   </tr>
                   <tr>
-                    <td className="indent-2">0-15</td>
+                    <td className="indent-2">BBQ Chicken</td>
                     <td>...</td>
                     <td>...</td>
-                    <td>82,148</td>
-                    <td className="total-col">82,148</td>
+                    <td>821</td>
+                    <td className="total-col">821</td>
                   </tr>
                   {/* More rows would be here */}
                   <tr className="footer-row">
                     <td>Total</td>
-                    <td>1,885,182</td>
-                    <td>777,683</td>
-                    <td>19,857,125</td>
-                    <td className="total-col">22,519,990</td>
+                    <td>1,885</td>
+                    <td>7,776</td>
+                    <td>19,857</td>
+                    <td className="total-col">29,518</td>
                   </tr>
                 </tbody>
               </table>

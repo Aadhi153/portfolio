@@ -7,6 +7,7 @@ import './Navbar.css'
 const links = [
   { label: 'Home',     href: '#home' },
   { label: 'About',    href: '#about' },
+  { label: 'Experience', href: '#experience' },
   { label: 'Skills',   href: '#skills' },
   { label: 'Projects', href: '#projects' },
   { label: 'Services', href: '#services' },
@@ -30,7 +31,7 @@ export default function Navbar() {
         return
       }
 
-      const sections = ['home', 'about', 'skills', 'projects', 'services', 'contact']
+      const sections = ['home', 'about', 'experience', 'skills', 'projects', 'services', 'contact']
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i])
         if (el) {

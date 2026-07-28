@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
+import Experience from './components/Experience'
 import Skills from './components/Skills'
 import Projects from './components/Projects'
 import Services from './components/Services'
@@ -70,6 +71,7 @@ export default function App() {
                   <main>
                     <motion.div variants={itemVariant}><Hero /></motion.div>
                     <motion.div variants={itemVariant}><About /></motion.div>
+                    <motion.div variants={itemVariant}><Experience /></motion.div>
                     <motion.div variants={itemVariant}><Skills /></motion.div>
                     <motion.div variants={itemVariant}><Projects onShowDashboard={() => setShowDashboard(true)} /></motion.div>
                     <motion.div variants={itemVariant}><Services /></motion.div>

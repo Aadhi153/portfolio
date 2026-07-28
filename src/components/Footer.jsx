@@ -27,8 +27,8 @@ export default function Footer() {
         </p>
 
         <div className="footer__links">
-          <a href="https://github.com/AadhiPiranav"   target="_blank" rel="noreferrer" className="footer__link" aria-label="GitHub"><GithubIcon /></a>
-          <a href="https://linkedin.com/in/aadhipiranav" target="_blank" rel="noreferrer" className="footer__link" aria-label="LinkedIn"><LinkedinIcon /></a>
+          <a href="https://github.com/Aadhi153"   target="_blank" rel="noreferrer" className="footer__link" aria-label="GitHub"><GithubIcon /></a>
+          <a href="https://linkedin.com/in/aadhi-piranav-r-t" target="_blank" rel="noreferrer" className="footer__link" aria-label="LinkedIn"><LinkedinIcon /></a>
           <a href="mailto:aadhip153@gmail.com" className="footer__link" aria-label="Email"><Mail size={18} /></a>
         </div>
       </div>

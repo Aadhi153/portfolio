@@ -4,9 +4,9 @@ import './CodeWindow.css'
 const lines = [
   { tokens: [{ t: 'kw', v: 'const' }, { t: 'plain', v: ' ' }, { t: 'var', v: 'developer' }, { t: 'plain', v: ' = ' }, { t: 'punc', v: '{' }] },
   { indent: 1, tokens: [{ t: 'prop', v: 'name' }, { t: 'punc', v: ': ' }, { t: 'str', v: "'Aadhi Piranav'" }, { t: 'punc', v: ',' }] },
-  { indent: 1, tokens: [{ t: 'prop', v: 'role' }, { t: 'punc', v: ': ' }, { t: 'str', v: "'Full Stack Developer'" }, { t: 'punc', v: ',' }] },
-  { indent: 1, tokens: [{ t: 'prop', v: 'stack' }, { t: 'punc', v: ': ' }, { t: 'punc', v: '[' }, { t: 'str', v: "'React'" }, { t: 'punc', v: ', ' }, { t: 'str', v: "'Node.js'" }, { t: 'punc', v: ']' }, { t: 'punc', v: ',' }] },
-  { indent: 1, tokens: [{ t: 'prop', v: 'location' }, { t: 'punc', v: ': ' }, { t: 'str', v: "'Tamil Nadu, India'" }, { t: 'punc', v: ',' }] },
+  { indent: 1, tokens: [{ t: 'prop', v: 'role' }, { t: 'punc', v: ': ' }, { t: 'str', v: "'Full Stack & React Native Developer'" }, { t: 'punc', v: ',' }] },
+  { indent: 1, tokens: [{ t: 'prop', v: 'stack' }, { t: 'punc', v: ': ' }, { t: 'punc', v: '[' }, { t: 'str', v: "'React Native'" }, { t: 'punc', v: ', ' }, { t: 'str', v: "'Node.js'" }, { t: 'punc', v: ', ' }, { t: 'str', v: "'Supabase'" }, { t: 'punc', v: ']' }, { t: 'punc', v: ',' }] },
+  { indent: 1, tokens: [{ t: 'prop', v: 'location' }, { t: 'punc', v: ': ' }, { t: 'str', v: "'Namakkal, Tamil Nadu'" }, { t: 'punc', v: ',' }] },
   { indent: 1, tokens: [{ t: 'prop', v: 'available' }, { t: 'punc', v: ': ' }, { t: 'kw', v: 'true' }] },
   { tokens: [{ t: 'punc', v: '};' }] },
 ]
