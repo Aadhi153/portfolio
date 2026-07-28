@@ -16,7 +16,7 @@ const LinkedinIcon = () => (
   </svg>
 )
 
-const roles = ['Full Stack Developer', 'React Native Developer', 'Web Developer']
+const roles = ['Full Stack & React Native Developer']
 
 function useTypewriter(words, { typeSpeed = 75, deleteSpeed = 40, pause = 1500 } = {}) {
   const [index, setIndex] = useState(0)
@@ -93,7 +93,7 @@ export default function Hero() {
               {roleText}
               <span className="hero__role-cursor" />
             </span>
-            <span className="hero__role-sub">React Native · Web Developer · Tamil Nadu, India</span>
+            <span className="hero__role-sub">React Native · Node.js · Supabase · Namakkal, Tamil Nadu</span>
           </motion.div>
 
           <motion.p
@@ -102,8 +102,9 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            I build high-performance mobile apps and responsive websites with clean UI and scalable
-            backend systems. Passionate about real-world solutions and continuously improving my craft.
+            Full Stack &amp; React Native Developer specializing in React Native, React.js, Node.js, and
+            Supabase, with production experience delivering cross-platform applications end to end — from
+            UI design through backend integration and deployment.
           </motion.p>
 
           <motion.div
@@ -132,7 +133,7 @@ export default function Hero() {
             <a href="https://github.com/Aadhi153" target="_blank" rel="noreferrer" className="hero__social-btn" aria-label="GitHub">
               <GithubIcon />
             </a>
-            <a href="https://linkedin.com/in/aadhipiranav" target="_blank" rel="noreferrer" className="hero__social-btn" aria-label="LinkedIn">
+            <a href="https://linkedin.com/in/aadhi-piranav-r-t" target="_blank" rel="noreferrer" className="hero__social-btn" aria-label="LinkedIn">
               <LinkedinIcon />
             </a>
             <div className="hero__social-divider" />
@@ -162,8 +163,8 @@ export default function Hero() {
 
           {/* Current role & flagship project, in place of unverifiable stats */}
           <div className="hero__stats-line">
-            Currently building at <strong>AerixNova Technologies</strong> — shipped{' '}
-            <strong>FreshCart</strong>, a full-stack grocery ecommerce platform.
+            Currently a Mobile App Developer at <strong>AerixNova Technologies</strong> — building{' '}
+            <strong>FreshCart</strong>, a full-stack e-commerce platform, alongside production client work.
           </div>
         </motion.div>
       </div>
